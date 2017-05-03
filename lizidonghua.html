@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>粒子动画</title>
+    <style>
+        canvas{background:#ccc;}
+    </style>
+</head>
+<body>
+<canvas width="600" height="500"></canvas>
+</body>
+</html>
+<script>
+    var canvas=document.querySelector("canvas");
+    var cobj=canvas.getContext("2d");
+
+//粒子动画
+//    function lizi(){
+//        this.x=400;
+//        this.y=400;
+//        this.r=3+3*Math.random();
+//        this.color="rgb("+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+","+parseInt(Math.random()*255)+")";
+//        this.speedx=6*Math.random();
+//        this.speedy=-8;
+//        this.g=0.3;
+//        this.speedr=0.1;
+//    }
+//
+//    lizi.prototype={
+//        draw:function(){
+//            cobj.save();
+//            cobj.translate(this.x,this.y);
+//            cobj.beginPath();
+//            cobj.fillStyle=this.color;
+////            cobj.fillStyle="#eee";
+//            cobj.arc(0,0,this.r,0,Math.PI*2);
+//            cobj.fill();
+//            cobj.restore();
+//        },
+//        update:function(){
+//            this.x+=this.speedx;
+//            this.speedy+=this.g;
+//            this.y+=this.speedy;
+//            this.r-=this.speedr;
+//        }
+//    }
+//    var arr=[];
+//     setInterval(function(){
+//         cobj.clearRect(0,0,600,500);
+//         arr.push(new lizi());
+//         for(var i=0;i<arr.length;i++){
+//             arr[i].draw();
+//             arr[i].update();
+//             if(arr[i].r<0){
+//                 arr[i]=new lizi();
+//             }
+//         }
+//         if(arr.length>100){
+//             arr.shift();
+//         }
+//     },50)
+
+//    火焰效果
+    var mx,my;
+    canvas.onmousemove=function(e){
+        mx= e.clientX;
+        my= e.clientY;
+    }
+
+        function fire(){
+            this.x=mx;
+            this.y=my;
+            this.r=2+3*Math.random();
+            this.color="rgb(226,17,12)";
+            this.speedy=2+Math.random()*3;
+            this.speedr=0.1;
+            this.life=3;
+            this.speedl=0.1;
+        }
+
+        fire.prototype={
+            draw:function(){
+                cobj.save();
+                cobj.translate(this.x,this.y);
+                cobj.beginPath();
+                cobj.globalCompositeOperation="lighter";
+                cobj.fillStyle=this.color;
+                cobj.arc(0,0,this.r,0,Math.PI*2);
+                cobj.fill();
+                cobj.restore();
+            },
+            update:function(){
+                this.speedx=8*Math.random()-4;
+                this.x+=this.speedx;
+                this.y-=this.speedy;
+                this.r-=this.speedr;
+                this.life-=this.speedl;
+            }
+        }
+        var arr=[];
+        setInterval(function(){
+            cobj.clearRect(0,0,600,500);
+            arr.push(new fire());
+            for(var i=0;i<arr.length;i++){
+                arr[i].draw();
+                arr[i].update();
+                if(arr[i].r<0||arr[i].life<0){
+                    arr[i]=new fire();
+                }
+            }
+            if(arr.length>300){
+                arr.shift();
+            }
+        },50)
+
+
+
+//    贝塞尔曲线
+//        var x=0;
+//        setInterval(function(){
+//             x+=10;
+//            if(x==600){
+//                x=0;
+//            }
+//            cobj.clearRect(0,0,600,500);
+//            cobj.save();
+//            cobj.translate(x,100);
+//            cobj.beginPath();
+//            cobj.moveTo(-600,100);
+//            cobj.bezierCurveTo(-400,50,-200,150,0,100);
+//            cobj.bezierCurveTo(200,50,400,150,600,100);
+//            cobj.stroke();
+//            cobj.restore();
+//        },50)
+
+//        var x=0;
+//        setInterval(function(){
+//            x+=20;
+//            if(x==600){
+//                x=0;
+//            }
+//            cobj.clearRect(0,0,600,500);
+//            cobj.save();
+//            cobj.translate(x,100);
+//            cobj.beginPath();
+//            cobj.moveTo(-600,100);
+//            cobj.bezierCurveTo(-400,150,-200,50,0,100);
+//            cobj.bezierCurveTo(200,150,400,50,600,100);
+//            cobj.stroke();
+//            cobj.restore();
+//        },50)
+
+
+
+</script>
