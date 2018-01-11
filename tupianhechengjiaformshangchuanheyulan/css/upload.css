@@ -1,0 +1,70 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.bk{
+    position: relative;
+}
+.bk .bk-bk{
+    width: 100%;
+}
+.file{
+    position: absolute;
+    top: 5.6%;
+    left:11.5% ;
+    width: 77.5%;
+    height: 47%;
+    /*background: violet;*/
+    opacity: 0;
+}
+/*.yh-box{*/
+    /*position: absolute;*/
+    /*top: 5.6%;*/
+    /*left:11.5% ;*/
+    /*width: 77.5%;*/
+    /*height: 47%;*/
+    /*background: violet;*/
+    /*opacity: 0;*/
+    /*z-index: 9999999;*/
+/*}*/
+.yh{
+    display: none;
+    position: absolute;
+    top: 5.6%;
+    left:11.5% ;
+    width: 77.5%;
+    height: 47%;
+    /*background: violet;*/
+    /*opacity: 0;*/
+    z-index: 9999999;
+}
+.user{
+    position: absolute;
+    top: 82%;
+    left: 32%;
+    width:37%;
+    height: 6%;
+    border-radius: 20%;
+    z-index: 9999;
+}
+.sub{
+    position: absolute;
+    top: 91%;
+    left:32% ;
+    width:37%;
+    height: 6%;
+    /*opacity: 0;*/
+    z-index: 999;
+    background: black;
+    border-radius: 20%;
+}
+/*.yh{*/
+    /*position: absolute;*/
+    /*top: 5.6%;*/
+    /*left:11.5% ;*/
+    /*width: 77.5%;*/
+    /*height: 47%;*/
+    /*!*background: violet;*!*/
+    /*opacity: 0;*/
+/*}*/

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery-3.0.0.min(2).js"></script>
+    <title>Document</title>
+</head>
+<style>
+    body,html{
+        padding: 0;
+        margin: 0;
+    }
+</style>
+<body>
+<div id="imgBox"></div>
+<canvas id="canvas"  style="display: none"></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext('2d');
+    var h=$(window).height();
+    var w=$(window).width();
+    canvas.height=h;
+    canvas.width=w;
+    var data=["img/xm.jpg","img/4.jpg"];
+    var m="格格猪";
+    function drawing(n){
+        if(n<data.length){
+            var img=new Image;
+            img.crossOrigin = 'Anonymous'; //解决跨域
+            img.src=data[n];
+            img.onload=function(){
+                if(n==0){
+                    ctx.drawImage(img,0,0,w,h);
+                }else if(n==1){
+                    circleImg(ctx,img,200,50,50);
+                    ctx.font="40px Arial";
+                    ctx.fillStyle='black';
+
+                    ctx.fillText(m,10,50);
+                }
+                drawing(n+1);
+            }
+        }
+        // 把canvas转化成png图片放在div中
+        function convertCanvasToImage(canvas) {
+            var hc_image = new Image();
+            hc_image.src = canvas.toDataURL("image/png");
+            $('#imgBox').html(hc_image);
+        }
+        convertCanvasToImage(canvas);
+    }
+    drawing(0)
+    // 封装的切圆函数
+    function circleImg(ctx, img, x, y, r) {
+        ctx.save();
+        var d =2 * r;
+        var cx = x + r;
+        var cy = y + r;
+        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.drawImage(img, x, y, d, d);
+        ctx.restore();
+    }
+</script>
+</html>

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!--<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="css/upload.css">
+    <!--<script src="js/rem.js"></script>-->
+    <script src="js/jquery-3.0.0.min(2).js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div class="bk">
+    <img src="img/xm.jpg" alt="" class="bk-bk">
+    <!--<div class="yh-box">-->
+    <img src="" alt="" class="yh">
+    <!--</div>-->
+    <form action="upload.php" method="post">
+    <input type="file" class="file" name="photo"  id="sc">
+        <input type="text" value="请输入您的姓名" name="username" class="user">
+        <input type="submit" class="sub">
+    </form>
+</div>
+</body>
+<script>
+    $("#sc").change(function(){
+        // var pp=$("#sc").val();
+        // var file=$("#sc").files[0];
+        // if((file.type).indexOf("image/")==-1){
+        //     alert("请上传图片");
+        //     return;
+        // }
+        var filepath=$("#sc").val();
+        var extStart=filepath.lastIndexOf(".");
+        var ext=filepath.substring(extStart,filepath.length).toUpperCase();
+        if(ext!=".BMP"&&ext!=".PNG"&&ext!=".GIF"&&ext!=".JPG"&&ext!=".JPEG"){
+            alert("图片限于bmp,png,gif,jpeg,jpg格式");
+            return;
+        }
+        var objUrl = getObjectURL(this.files[0]) ;
+        console.log("objUrl = "+objUrl) ;
+        if (objUrl)
+        {
+            $(".yh").attr("src", objUrl);
+            $("#sc").css("display","none");
+            $(".yh").css("display","block");
+            // console.log($("#sc").val())
+        }
+    }) ;
+    //建立一個可存取到該file的url
+    function getObjectURL(file)
+    {
+        var url = null ;
+
+        if (window.createObjectURL!=undefined)
+        { // basic
+            url = window.createObjectURL(file) ;
+        }
+        else if (window.URL!=undefined)
+        {
+            // mozilla(firefox)
+            url = window.URL.createObjectURL(file) ;
+        }
+        else if (window.webkitURL!=undefined) {
+            // webkit or chrome
+            url = window.webkitURL.createObjectURL(file) ;
+        }
+        return url ;
+    }
+
+
+</script>
+</html>

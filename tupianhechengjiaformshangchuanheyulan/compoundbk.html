@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="js/jquery-3.0.0.min(2).js"></script>
+    <title>Document</title>
+</head>
+<body>
+<div id="imgBox"></div>
+<canvas id="canvas" ></canvas>
+</body>
+<script>
+    var canvas=document.getElementById("canvas");
+    var ctx=canvas.getContext('2d');
+    var h=$(window).height();
+    var w=$(window).width();
+    canvas.height=h;
+    canvas.width=w;
+    var img=new Image();
+    img.src="img/xm.jpg";
+    img.onload = function(){
+        ctx.drawImage(img,0,0,w,h);
+    };
+    // 切圆函数
+    function circleImg(ctx, img, x, y, r) {
+        ctx.save();
+        var d =2 * r;
+        var cx = x + r;
+        var cy = y + r;
+        ctx.arc(cx, cy, r, 0, 2 * Math.PI);
+        ctx.clip();
+        ctx.drawImage(img, x, y, d, d);
+        ctx.restore();
+    }
+</script>
+</html>
