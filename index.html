@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body,html{
+            padding: 0;
+            margin: 0;
+            background: #ccc;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            /*background: greenyellow;*/
+            margin-left: 20%;
+            margin-top: 10%;
+            box-shadow: 300px 0px 0px -70px white, 500px 0px 0px -70px white,700px 0px 0px -70px white,900px 0px 0px -70px white;
+            animation:an3 1.5s linear infinite;
+            position: relative;
+        }
+        .pp{
+            position: absolute;
+            top: 30px;
+            left: 180px;
+            width: 30px;
+            height: 30px;
+            background: black;
+            border-radius: 50%;
+        }
+        .box::before{
+            content: " ";
+            display: block;
+            margin-left: 100px;
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            border-radius: 100px 100px 0 0;
+            animation:an2 1s infinite;
+        }
+        .box::after{
+            content: "";
+            margin-left: 100px;
+            display: block;
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            border-radius: 0 0 100px 100px;
+            animation:an1 1s infinite;
+        }
+        @keyframes an1 {
+            0%   {
+                transform:rotateZ(0deg);}
+            25%  {
+                transform:rotateZ(16deg);}
+            50%  {
+                transform:rotateZ(32deg);}
+            75%  {
+                transform:rotateZ(16deg);}
+            100% {
+                transform:rotateZ(0deg);
+            }
+
+        }
+        @keyframes an2 {
+            0%   {
+                transform:rotateZ(0deg);}
+            25%  {
+                transform:rotateZ(-16deg);}
+            50%  {
+                transform:rotateZ(-32deg);}
+            75%  {
+                transform:rotateZ(-16deg);}
+            100% {
+                transform:rotateZ(0deg);
+            }
+
+        }
+        @keyframes an3{
+            0%   {
+                box-shadow: 300px 0px 0px -70px white ,500px 0px 0px -70px white,700px 0px 0px -70px white,900px 0px 0px -70px white;
+            }
+            100%  {
+                box-shadow: 0px 0px 0px -70px white ,200px 0px 0px -70px white,500px 0px 0px -70px white,700px 0px 0px -70px white;
+            }
+
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="pp"></div>
+</div>
+</body>
+</html>
